@@ -1,2 +1,2 @@
 # UNITE
-UNified Interfact for Test and Engineering
+UNified Interface for Test and Engineering
