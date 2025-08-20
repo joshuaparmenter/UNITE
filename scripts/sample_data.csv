@@ -1,0 +1,6 @@
+name,age,email,department,salary,is_active,start_date,website
+John Doe,30,john@example.com,Engineering,75000.50,true,2023-01-15,https://johndoe.dev
+Jane Smith,25,jane@example.com,Marketing,65000.00,true,2023-03-20,https://janesmith.com
+Bob Johnson,35,bob@example.com,Sales,80000.25,false,2022-11-10,
+Alice Brown,28,alice@example.com,Design,70000.00,true,2023-05-01,https://alicebrown.design
+Charlie Wilson,32,charlie@example.com,Engineering,85000.75,true,2022-08-15,https://charlie.dev
