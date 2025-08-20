@@ -1,14 +1,18 @@
 package main
 
 import (
-    "bufio"
+    "encoding/json"
     "fmt"
     "net"
 )
 
+type Message struct {
+    User string `json:"user"`
+    Text string `json:"text"`
+}
+
 func main() {
     host := "127.0.0.1:5000"
-
     ln, err := net.Listen("tcp", host)
     if err != nil {
         panic(err)
@@ -23,14 +27,17 @@ func main() {
     defer conn.Close()
     fmt.Println("Connected by", conn.RemoteAddr())
 
-    reader := bufio.NewReader(conn)
-    for {
-        msg, err := reader.ReadString('\n')
-        if err != nil {
-            break
-        }
-        fmt.Printf("Received: %s", msg)
-        conn.Write([]byte(msg)) // Echo back
+    buf := make([]byte, 1024) // buffer to read data
+    n, err := conn.Read(buf)
+    if err != nil {
+        panic(err)
     }
+
+    var msg Message
+    if err := json.Unmarshal(buf[:n], &msg); err != nil {
+        panic(err)
+    }
+
+    fmt.Printf("Received JSON: %+v\n", msg)
 }
 
